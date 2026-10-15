@@ -9,6 +9,8 @@ The goal is to determine whether existing D365FO functionality meets a business 
 - [Companion source review and X++ object-creation guide](docs/xpp-agentic-development-review.md)
 - [Agreed requirements and brain dump](docs/brain-dumps/xpp-agentic-development-brain-dump.md)
 - [Developer journey](docs/ux/xpp-agentic-development-journey.md)
+- [Epic and child PRDs](docs/specs/xpp-agentic-development/epic.md)
+- [Implementation design and capability probes](docs/specs/xpp-agentic-development/implementation-design.md)
 
 The starting architecture is the VSIX, MCP server, and in-process Dynamics metadata bridge in [XppAiCopilotCompanion](https://github.com/nazmolla/XppAiCopilotCompanion). Its source is not vendored here; code-reuse rights and installed-version compatibility still require verification.
 

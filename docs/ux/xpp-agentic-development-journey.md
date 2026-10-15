@@ -19,7 +19,7 @@ stages:
       - "Application versions, dependencies, and active environment settings can change what is possible."
       - "A local build may be configured to deploy or synchronize online."
     success_signal: "The developer confirms the intended outcome and constraints; known environment/model identity and unresolved preflight items are visible before any write."
-    acceptance_criteria_refs: []
+    acceptance_criteria_refs: [discovery-confirm-outcome, discovery-read-only-preflight, discovery-online-build-settings]
   - id: decide-reuse-or-extension
     name: "Find existing functionality and justify any extension"
     persona: xpp-developer
@@ -31,7 +31,7 @@ stages:
       - "An extension can duplicate existing functionality or attach at the wrong business boundary."
       - "An engineering-source example may use an API unavailable in the target application version."
     success_signal: "A traceable decision identifies an existing solution or explains the necessary customization, verified target-version extension points, and remaining uncertainty."
-    acceptance_criteria_refs: []
+    acceptance_criteria_refs: [discovery-authorized-provenance, discovery-existing-capability, discovery-extension-boundary, discovery-bounded-retrieval, discovery-no-code-outcome, authoring-approved-plan]
   - id: engineer-and-compile-change
     name: "Approve, engineer, and compile a focused change"
     persona: xpp-developer
@@ -43,7 +43,7 @@ stages:
       - "Compilation does not establish acceptable query or batch performance."
       - "Missing metadata-extension support, partial writes, or incorrect model placement can prevent a valid change."
     success_signal: "Approved changes are in the intended owned custom models, metadata/source checks succeed, compilation has zero errors, warnings are disclosed, and performance assumptions and unmeasured risks are explicit."
-    acceptance_criteria_refs: []
+    acceptance_criteria_refs: [authoring-backend-ownership, authoring-capability-matrix, authoring-exact-placement, authoring-safe-metadata-write, authoring-model-dependencies, authoring-performance-rationale, authoring-attributable-build, authoring-local-only-build, authoring-repair-reconciliation, tests-requirement-trace]
   - id: prepare-tests-and-delivery
     name: "Prepare meaningful tests and choose the verification depth"
     persona: xpp-developer
@@ -55,7 +55,7 @@ stages:
       - "Generated tests can encode the same incorrect assumptions as the implementation."
       - "Screenshots and compilation can be mistaken for runtime correctness or performance evidence."
     success_signal: "Tests/runbooks are generated with observable expected outcomes and mutation boundaries; delivery can be recorded as compiled with runtime verification deferred, without claiming tests passed."
-    acceptance_criteria_refs: []
+    acceptance_criteria_refs: [tests-systest-artifacts, tests-playwright-artifacts, tests-data-prerequisites, tests-step-evidence-contract, tests-retention-cleanup, tests-performance-verification-plan, tests-deferred-runtime-delivery, ude-optional-execution, evidence-status-dimensions]
   - id: verify-in-approved-ude
     name: "Optionally deploy and verify in the approved UDE"
     persona: xpp-developer
@@ -67,7 +67,7 @@ stages:
       - "A test may change existing records, post transactions, or trigger batch/external effects."
       - "Unsupported automation, failed synchronization, or an unknown timeout outcome can require manual intervention."
     success_signal: "For executed work, target/build identity, deployment/sync results, test assertions, relevant measurements, screenshots, and per-step outcomes are recorded; pending, manual, blocked, and failed work is not reported as passed."
-    acceptance_criteria_refs: []
+    acceptance_criteria_refs: [ude-target-bound-approval, ude-deployment-before-tests, ude-effect-bound-test-approval, ude-manual-supported-handoff, ude-real-systest-results, ude-browser-results, ude-unknown-outcome-recovery, evidence-step-manifest]
   - id: preserve-evidence-and-handoff
     name: "Preserve evidence and hand off the change honestly"
     persona: xpp-developer
@@ -79,7 +79,7 @@ stages:
       - "Screenshots, logs, and manifests may expose restricted business data or authentication material."
       - "A single 'done' label can hide deferred runtime checks, unknown performance, or retained test data."
     success_signal: "The task branch contains the code, tests, runbooks/documents, and permitted sanitized evidence; verification gaps and cleanup obligations are explicit, and remote publication remains approval-controlled."
-    acceptance_criteria_refs: []
+    acceptance_criteria_refs: [evidence-retained-records, evidence-source-control-bundle, evidence-policy-sanitation, evidence-separate-push-approval, evidence-resumable-context, evidence-no-code-handoff]
 ---
 
 # X++ Agentic Development Journey
@@ -92,7 +92,7 @@ The developer identified the main difficulty as determining whether functionalit
 
 The selected primary context is an intermediate developer doing daily normal development with review time. The primary failure to prevent is a change that compiles but is redundant, incorrect, slow, or causes unintended UDE side effects.
 
-Thoughts and feelings below are design hypotheses derived from that context, not claims of observed usability research. Stage and persona IDs are stable references for downstream specification and tests. Acceptance-criteria references remain empty until the specification exists.
+Thoughts and feelings below are design hypotheses derived from that context, not claims of observed usability research. Stage and persona IDs are stable references for downstream specification and tests. Acceptance-criteria references link to the child PRDs in `..\specs\xpp-agentic-development`.
 
 ## Frame the business outcome and working context
 
@@ -171,4 +171,4 @@ Interruptions or handoffs should not require another developer to repeat the ori
 
 ## Recommended next step
 
-Write the PRD and implementation specification using these stable stage IDs. Map acceptance criteria to every applicable stage, especially reuse/extension judgment, performance reasoning, approval boundaries, and truthful verification status. Validate source-grounding and tool-adapter assumptions with targeted capability probes before promising automation.
+The PRDs and implementation design are in `..\specs\xpp-agentic-development`. Run `spec-vs-journey-review` to check coverage and consistency before test-first implementation planning. Validate source-grounding and tool-adapter assumptions with targeted capability probes before promising automation.
